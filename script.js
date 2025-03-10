@@ -1,55 +1,78 @@
-function toRadians(degrees) {
-    return degrees * Math.PI / 180;
+let car1 = new Object();
+car1.color = "red";
+car1.maxSpeed = 200;
+car1.driver = {
+  name: "Mykola Fetsiak",
+  category: "C",
+  personalLimitations: "No driving at night"
+};
+car1.tuning = true;
+car1.numberOfAccidents = 0;
+
+car1.drive = function () {
+  console.log("I am not driving at night");
+};
+
+let car2 = {
+  color: "blue",
+  maxSpeed: 220,
+  driver: {
+    name: "Mykola Fetsiak",
+    category: "B",
+    personalLimitations: null
+  },
+  tuning: false,
+  numberOfAccidents: 2,
+  drive: function () {
+    console.log("I can drive anytime");
+  }
+};
+
+function Truck(color, weight, avgSpeed, brand, model) {
+  this.color = color;
+  this.weight = weight;
+  this.avgSpeed = avgSpeed;
+  this.brand = brand;
+  this.model = model;
 }
 
-function triangle(value1, type1, value2, type2) {
-    console.log("Usage: triangle(value1, 'type1', value2, 'type2')");
-    console.log("Types: 'leg', 'hypotenuse', 'adjacent angle', 'opposite angle', 'angle'");
-    const validTypes = ["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"];
-    if (!validTypes.includes(type1) || !validTypes.includes(type2)) {
-        console.log("ERROR!\nError: Invalid type detected. Please reread instruction.");
-        return "failed";
-    }
-    if (value1 <= 0 || value2 <= 0) {
-        console.log("ERROR!\nError: Values must be positive.");
-        return "zero or negative input";
-    }
-    let a, b, c, alpha, beta;
-    if ((type1 === "leg" && type2 === "hypotenuse") || (type2 === "leg" && type1 === "hypotenuse")) {
-        let leg = type1 === "leg" ? value1 : value2;
-        c = type1 === "hypotenuse" ? value1 : value2;
-        if (leg >= c) {
-            console.log("ERROR!\nError: Leg must be less than hypotenuse.");
-            return "failed";
-        }
-        a = leg;
-        b = Math.sqrt(c * c - a * a);
-        alpha = Math.asin(a / c) * 180 / Math.PI;
-        beta = 90 - alpha;
-    }
-    else if ((type1 === "leg" && type2 === "opposite angle") || (type2 === "leg" && type1 === "opposite angle")) {
-        a = type1 === "leg" ? value1 : value2;
-        alpha = type1 === "opposite angle" ? value1 : value2;
-        if (alpha >= 90) {
-            console.log("ERROR!\nError: Angle must be less than 90 degrees.");
-            return "failed";
-        }
-        c = a / Math.sin(toRadians(alpha));
-        b = Math.sqrt(c * c - a * a);
-        beta = 90 - alpha;
-    }
-    else {
-        console.log("ERROR!\nError: Unsupported or incompatible type combination.");
-        return "failed";
-    }
-    console.log(`a = ${a}`);
-    console.log(`b = ${b}`);
-    console.log(`c = ${c}`);
-    console.log(`alpha = ${alpha}`);
-    console.log(`beta = ${beta}`);
-    return "success";
+Truck.prototype.AssignDriver = function(name, nightDriving, experience) {
+  this.driver = {
+    name: name,
+    nightDriving: nightDriving,
+    experience: experience
+  };
+};
+
+Truck.prototype.trip = function () {
+  if (!this.driver) {
+    console.log("No driver assigned");
+    return;
+  }
+  let message = "Driver " + this.driver.name + " ";
+  message += this.driver.nightDriving ? "drives at night" : "does not drive at night";
+  message += " and has " + this.driver.experience + " years of experience.";
+  console.log(message);
+};
+
+let truck1 = new Truck("white", 5000, 80.5, "Volvo", "FH16");
+let truck2 = new Truck("black", 4500, 85.3, "Scania", "R500");
+
+truck1.AssignDriver("Mykola Fetsiak", true, 5);
+truck2.AssignDriver("Mykola Fetsiak", false, 3);
+
+function testCars() {
+  console.clear();
+  console.log("Testing car1:");
+  car1.drive();
+  console.log("Testing car2:");
+  car2.drive();
 }
 
-triangle(7, "leg", 18, "hypotenuse");
-triangle(60, "opposite angle", 5, "leg");
-triangle(43.13, "angle", -2, "hypotenuse");
+function testTrucks() {
+  console.clear();
+  console.log("Testing truck1:");
+  truck1.trip();
+  console.log("Testing truck2:");
+  truck2.trip();
+}
