@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h1>Lab 1 - JavaScript Assignment</h1>
+    <h1>Lab 2 - JavaScript Assignment</h1>
     <p>Open the browser console (F12 or Ctrl+Shift+J) to see the output of the JavaScript code.</p>
 
     <script>
@@ -96,7 +96,7 @@
             }
 
             static help() {
-                console.log("A square is a four-sided polygon with all sides equal and all angles being right angles (90°).");
+                console.log("");
             }
 
             length() {
@@ -124,7 +124,7 @@
             }
 
             static help() {
-                console.log("A rectangle is a four-sided polygon with opposite sides equal and all angles being right angles (90°).");
+                console.log("");
             }
 
             length() {
@@ -154,7 +154,7 @@
             }
 
             static help() {
-                console.log("A rhombus is a four-sided polygon with all sides equal, opposite angles equal, and adjacent angles supplementary.");
+                console.log("");
             }
 
             length() {
@@ -200,7 +200,7 @@
             }
 
             static help() {
-                console.log("A parallelogram is a four-sided polygon with opposite sides equal and parallel, and opposite angles equal.");
+                console.log("");
             }
 
             length() {
@@ -245,7 +245,7 @@
         const tri1 = Triangular();
         const tri2 = Triangular({ a: 6, b: 8, c: 10 });
         const tri3 = Triangular({ a: 5, b: 12, c: 13 });
-        console.log("Triangular objects:", tri1, tri2, tri3);
+        console.log(tri1, tri2, tri3);
 
         function PiMultiplier(multiplier) {
             return function() {
@@ -256,7 +256,7 @@
         const doublePi = PiMultiplier(2);
         const twoThirdsPi = PiMultiplier(2/3);
         const halfPi = PiMultiplier(0.5);
-        console.log("PiMultiplier results:", doublePi(), twoThirdsPi(), halfPi());
+        console.log(doublePi(), twoThirdsPi(), halfPi());
 
         function Painter(color) {
             return function(obj) {
